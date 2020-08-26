@@ -1,5 +1,11 @@
 package com.example.demo.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,15 +17,6 @@ import com.example.demo.service.KafkaProducer;
 import com.example.demo.util.ReadSlotForecastFromCsv;
 import com.example.demo.vo.SlotForecastDetails;
 import com.example.demo.vo.SlotForecastVO;
-
-import java.io.File;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/kafka")
@@ -55,9 +52,14 @@ public class KafkaController {
         File input = new File("C:\\Users\\858184\\Downloads\\slotforecastfile.csv");
         
         List<SlotForecastDetails> data = ReadSlotForecastFromCsv.readObjectsFromCsv(input);
-        
-        data.forEach(slotForecast -> {
+
+        List<SlotForecastDetails> sortedList = data.stream()
+                .sorted(Comparator.comparingLong(SlotForecastDetails::getStoreId))
+                .collect(Collectors.toList());
+
+        sortedList.forEach(slotForecast -> {
             kafkaSender.sendMSTMessage(slotForecast);
+            //System.out.println(slotForecast);
         });       
         return "Message sent to the Kafka Topic java_in_use_topic Successfully";
     }
