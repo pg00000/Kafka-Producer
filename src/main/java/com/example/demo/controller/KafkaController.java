@@ -64,34 +64,220 @@ public class KafkaController {
         return "Message sent to the Kafka Topic java_in_use_topic Successfully";
     }
     
-	@PostMapping(value = "/prod/bulkSend")
-	public String bulkSendForecastSlots() {
-		SlotForecastDetails slot = new SlotForecastDetails();
-		for (int count = 1; count <= 100; count++) {
-			slot.setMessageType("BaseForecast");
-			slot.setStoreId(Long.valueOf(count));
-			slot.setB2bAlertBasketSize(9999);
-			slot.setB2bDeliveryCharge(5.95);
-			slot.setB2bMinBasketSize(150);
-			slot.setB2bRdcCharge(4.95);
-			slot.setB2cAlertBasketSize(9999);
-			slot.setB2cDeliveryCharge(5.95);
-			slot.setB2cMinBasketSize(150);
-			slot.setB2cRdcCharge(4.95);
-			slot.setDayOfWeek("SATURDAY");
-			slot.setDeliveryType("ATTENDED");
-			slot.setMaxBookings(10);
-			slot.setServiceType("DUG");
-			slot.setCreatedBy("user1");
-			slot.setUpdatedBy("user2");
-			slot.setSlotPlan("STANDARD");
-			slot.setSlotStartTime(800L);
-			slot.setSlotEndTime(900L);
-			slot.setStartDate("2020-08-24");
-			slot.setEndDate("2020-08-24");
-			slot.setSlotExpiryTime(500L);
-			kafkaSender.sendMSTMessage(slot);
-		}
-		return "Message sent to the Kafka Topic java_in_use_topic Successfully";
-	}
+    @PostMapping(value = "/prod/bulkUpdate")
+    public String bulkUpdateForecastSlots() {
+        for (int store = 1; store <= 10; store++) {
+            for (int slothour = 1; slothour <= 22; slothour++) {
+                for (int count = 0; count <= 59; count++) {
+                    SlotForecastDetails slot = new SlotForecastDetails();
+                    slot.setMessageType("BaseForecast");
+                    slot.setStoreId(Long.valueOf(store));
+                    slot.setB2bAlertBasketSize(9999);
+                    slot.setB2bDeliveryCharge(5.95);
+                    slot.setB2bMinBasketSize(150);
+                    slot.setB2bRdcCharge(4.95);
+                    slot.setB2cAlertBasketSize(9999);
+                    slot.setB2cDeliveryCharge(5.95);
+                    slot.setB2cMinBasketSize(150);
+                    slot.setB2cRdcCharge(4.95);
+                    slot.setDayOfWeek("SUNDAY");
+                    slot.setDeliveryType("A");
+                    slot.setMaxBookings(93);
+                    slot.setServiceType("DUG");
+                    slot.setCreatedBy("user1");
+                    slot.setUpdatedBy("user2");
+                    slot.setSlotPlan("STANDARD");
+                    slot.setSlotStartTime(Long.valueOf(slothour * 100 + count));
+                    slot.setSlotEndTime(Long.valueOf(slothour * 100 + 100 + count));
+                    slot.setStartDate("2020-09-06");
+                    slot.setEndDate("2020-09-06");
+                    slot.setSlotExpiryTime(Long.valueOf(slothour * 100 + count));
+                    kafkaSender.sendMSTMessage(slot);
+                    // log.info("Slot --> " + slot.toString());
+                }
+            }
+
+            for (int slothour = 1; slothour <= 22; slothour++) {
+                for (int count = 0; count <= 59; count++) {
+                    SlotForecastDetails slot = new SlotForecastDetails();
+                    slot.setMessageType("BaseForecast");
+                    slot.setStoreId(Long.valueOf(store));
+                    slot.setB2bAlertBasketSize(9999);
+                    slot.setB2bDeliveryCharge(5.95);
+                    slot.setB2bMinBasketSize(150);
+                    slot.setB2bRdcCharge(4.95);
+                    slot.setB2cAlertBasketSize(9999);
+                    slot.setB2cDeliveryCharge(5.95);
+                    slot.setB2cMinBasketSize(150);
+                    slot.setB2cRdcCharge(4.95);
+                    slot.setDayOfWeek("MONDAY");
+                    slot.setDeliveryType("A");
+                    slot.setMaxBookings(94);
+                    slot.setServiceType("DUG");
+                    slot.setCreatedBy("user1");
+                    slot.setUpdatedBy("user2");
+                    slot.setSlotPlan("STANDARD");
+                    slot.setSlotStartTime(Long.valueOf(slothour * 100 + count));
+                    slot.setSlotEndTime(Long.valueOf(slothour * 100 + 100 + count));
+                    slot.setStartDate("2020-09-07");
+                    slot.setEndDate("2020-09-07");
+                    slot.setSlotExpiryTime(Long.valueOf(slothour * 100 + count));
+                    kafkaSender.sendMSTMessage(slot);
+                    // log.info("Slot --> " + slot.toString());
+                }
+            }
+
+            for (int slothour = 1; slothour <= 22; slothour++) {
+                for (int count = 0; count <= 59; count++) {
+                    SlotForecastDetails slot = new SlotForecastDetails();
+                    slot.setMessageType("BaseForecast");
+                    slot.setStoreId(Long.valueOf(store));
+                    slot.setB2bAlertBasketSize(9999);
+                    slot.setB2bDeliveryCharge(5.95);
+                    slot.setB2bMinBasketSize(150);
+                    slot.setB2bRdcCharge(4.95);
+                    slot.setB2cAlertBasketSize(9999);
+                    slot.setB2cDeliveryCharge(5.95);
+                    slot.setB2cMinBasketSize(150);
+                    slot.setB2cRdcCharge(4.95);
+                    slot.setDayOfWeek("TUESDAY");
+                    slot.setDeliveryType("A");
+                    slot.setMaxBookings(94);
+                    slot.setServiceType("DUG");
+                    slot.setCreatedBy("user1");
+                    slot.setUpdatedBy("user2");
+                    slot.setSlotPlan("STANDARD");
+                    slot.setSlotStartTime(Long.valueOf(slothour * 100 + count));
+                    slot.setSlotEndTime(Long.valueOf(slothour * 100 + 100 + count));
+                    slot.setStartDate("2020-09-08");
+                    slot.setEndDate("2020-09-08");
+                    slot.setSlotExpiryTime(Long.valueOf(slothour * 100 + count));
+                    kafkaSender.sendMSTMessage(slot);
+                    // log.info("Slot --> " + slot.toString());
+                }
+            }
+
+            for (int slothour = 1; slothour <= 22; slothour++) {
+                for (int count = 0; count <= 59; count++) {
+                    SlotForecastDetails slot = new SlotForecastDetails();
+                    slot.setMessageType("BaseForecast");
+                    slot.setStoreId(Long.valueOf(store));
+                    slot.setB2bAlertBasketSize(9999);
+                    slot.setB2bDeliveryCharge(5.95);
+                    slot.setB2bMinBasketSize(150);
+                    slot.setB2bRdcCharge(4.95);
+                    slot.setB2cAlertBasketSize(9999);
+                    slot.setB2cDeliveryCharge(5.95);
+                    slot.setB2cMinBasketSize(150);
+                    slot.setB2cRdcCharge(4.95);
+                    slot.setDayOfWeek("WEDNESDAY");
+                    slot.setDeliveryType("A");
+                    slot.setMaxBookings(94);
+                    slot.setServiceType("DUG");
+                    slot.setCreatedBy("user1");
+                    slot.setUpdatedBy("user2");
+                    slot.setSlotPlan("STANDARD");
+                    slot.setSlotStartTime(Long.valueOf(slothour * 100 + count));
+                    slot.setSlotEndTime(Long.valueOf(slothour * 100 + 100 + count));
+                    slot.setStartDate("2020-09-09");
+                    slot.setEndDate("2020-09-09");
+                    slot.setSlotExpiryTime(Long.valueOf(slothour * 100 + count));
+                    kafkaSender.sendMSTMessage(slot);
+                    // log.info("Slot --> " + slot.toString());
+                }
+            }
+
+            for (int slothour = 1; slothour <= 22; slothour++) {
+                for (int count = 0; count <= 59; count++) {
+                    SlotForecastDetails slot = new SlotForecastDetails();
+                    slot.setMessageType("BaseForecast");
+                    slot.setStoreId(Long.valueOf(store));
+                    slot.setB2bAlertBasketSize(9999);
+                    slot.setB2bDeliveryCharge(5.95);
+                    slot.setB2bMinBasketSize(150);
+                    slot.setB2bRdcCharge(4.95);
+                    slot.setB2cAlertBasketSize(9999);
+                    slot.setB2cDeliveryCharge(5.95);
+                    slot.setB2cMinBasketSize(150);
+                    slot.setB2cRdcCharge(4.95);
+                    slot.setDayOfWeek("THURSDAY");
+                    slot.setDeliveryType("A");
+                    slot.setMaxBookings(94);
+                    slot.setServiceType("DUG");
+                    slot.setCreatedBy("user1");
+                    slot.setUpdatedBy("user2");
+                    slot.setSlotPlan("STANDARD");
+                    slot.setSlotStartTime(Long.valueOf(slothour * 100 + count));
+                    slot.setSlotEndTime(Long.valueOf(slothour * 100 + 100 + count));
+                    slot.setStartDate("2020-09-10");
+                    slot.setEndDate("2020-09-10");
+                    slot.setSlotExpiryTime(Long.valueOf(slothour * 100 + count));
+                    kafkaSender.sendMSTMessage(slot);
+                    // log.info("Slot --> " + slot.toString());
+                }
+            }
+
+            for (int slothour = 1; slothour <= 22; slothour++) {
+                for (int count = 0; count <= 59; count++) {
+                    SlotForecastDetails slot = new SlotForecastDetails();
+                    slot.setMessageType("BaseForecast");
+                    slot.setStoreId(Long.valueOf(store));
+                    slot.setB2bAlertBasketSize(9999);
+                    slot.setB2bDeliveryCharge(5.95);
+                    slot.setB2bMinBasketSize(150);
+                    slot.setB2bRdcCharge(4.95);
+                    slot.setB2cAlertBasketSize(9999);
+                    slot.setB2cDeliveryCharge(5.95);
+                    slot.setB2cMinBasketSize(150);
+                    slot.setB2cRdcCharge(4.95);
+                    slot.setDayOfWeek("FRIDAY");
+                    slot.setDeliveryType("A");
+                    slot.setMaxBookings(94);
+                    slot.setServiceType("DUG");
+                    slot.setCreatedBy("user1");
+                    slot.setUpdatedBy("user2");
+                    slot.setSlotPlan("STANDARD");
+                    slot.setSlotStartTime(Long.valueOf(slothour * 100 + count));
+                    slot.setSlotEndTime(Long.valueOf(slothour * 100 + 100 + count));
+                    slot.setStartDate("2020-09-11");
+                    slot.setEndDate("2020-09-11");
+                    slot.setSlotExpiryTime(Long.valueOf(slothour * 100 + count));
+                    kafkaSender.sendMSTMessage(slot);
+                    // log.info("Slot --> " + slot.toString());
+                }
+            }
+
+            for (int slothour = 1; slothour <= 22; slothour++) {
+                for (int count = 0; count <= 59; count++) {
+                    SlotForecastDetails slot = new SlotForecastDetails();
+                    slot.setMessageType("BaseForecast");
+                    slot.setStoreId(Long.valueOf(store));
+                    slot.setB2bAlertBasketSize(9999);
+                    slot.setB2bDeliveryCharge(5.95);
+                    slot.setB2bMinBasketSize(150);
+                    slot.setB2bRdcCharge(4.95);
+                    slot.setB2cAlertBasketSize(9999);
+                    slot.setB2cDeliveryCharge(5.95);
+                    slot.setB2cMinBasketSize(150);
+                    slot.setB2cRdcCharge(4.95);
+                    slot.setDayOfWeek("SATURDAY");
+                    slot.setDeliveryType("A");
+                    slot.setMaxBookings(94);
+                    slot.setServiceType("DUG");
+                    slot.setCreatedBy("user1");
+                    slot.setUpdatedBy("user2");
+                    slot.setSlotPlan("STANDARD");
+                    slot.setSlotStartTime(Long.valueOf(slothour * 100 + count));
+                    slot.setSlotEndTime(Long.valueOf(slothour * 100 + 100 + count));
+                    slot.setStartDate("2020-09-12");
+                    slot.setEndDate("2020-09-12");
+                    slot.setSlotExpiryTime(Long.valueOf(slothour * 100 + count));
+                    kafkaSender.sendMSTMessage(slot);
+                    // log.info("Slot --> " + slot.toString());
+                }
+            }
+        }
+
+        return "Message sent to the Kafka Topic java_in_use_topic Successfully";
+    }
 }

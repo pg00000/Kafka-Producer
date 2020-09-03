@@ -30,7 +30,8 @@ public class KafkaProducerConfig {
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,bootstrapAddress);
         /*configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,StringSerializer.class);
         configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class);*/
-        
+        //request.timeout.ms >> 900000
+        configProps.put(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG, "999999");
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,StringSerializer.class.getName());
         configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, SlotForecastSerializer.class.getName());
 
